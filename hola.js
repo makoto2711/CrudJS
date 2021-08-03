@@ -12,11 +12,11 @@ p.textContent = "No hay items nuevos 🐲";
 p.classList.add("text-center");
 
 const fragmento = document.createDocumentFragment()
+ 
+ 
 
 let arr = [], jason = {};
-
 let clonar
-
 let save_id = 0
 
 
@@ -38,8 +38,7 @@ window.addEventListener("keyup", (e)=>
             revisar_arr(arr); 
         }
     }
-
-
+ 
 })
 
 
@@ -113,23 +112,32 @@ function revisar_arr(arr)
 
 
 
-window.addEventListener("click", (e)=> 
-{
 
-    if (e.target.classList.contains("update")) 
-    { 
-        save_id = e.target.parentNode.parentNode.id;
-        $input.value = arr[e.target.parentNode.parentNode.id].item;
-        $save.classList.add("d-none");
-        $update.classList.remove("d-none");
-    }
-    else if(e.target.classList.contains("delete"))
+    window.addEventListener("click", (e)=> 
     {
-        arr.splice(e.target.parentNode.parentNode.id, 1);
-        revisar_arr(arr);  
-    }
 
-});
+        if (e.target.classList.contains("update")) 
+        { 
+            save_id = e.target.parentNode.parentNode.id;
+            $input.value = arr[e.target.parentNode.parentNode.id].item;
+            $save.classList.add("d-none");
+            $update.classList.remove("d-none");
+        }
+        else if(e.target.classList.contains("delete"))
+        {
+            arr.splice(e.target.parentNode.parentNode.id, 1);
+            e.target.parentNode.parentNode.classList.add("dissapear")    
+
+            setTimeout(() => 
+            {
+                revisar_arr(arr); 
+            }, 500);
+
+
+        
+        }
+
+    });
 
  
 })();
