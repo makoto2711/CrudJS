@@ -16,19 +16,31 @@ let arr = [], jason = {};
 let clonar
 let save_id = 0
 
+let boton = false
+
 revisar_arr(arr); 
 
     window.addEventListener("keyup", (e)=> 
-    {
+    { 
         if (e.key === "Enter") 
         {
-            if ($input.value.trim() === "")  alert("ingresa un dato")    
+            if ($input.value.trim() === "")  alert("ingresa un dato") 
             else
             {
-                jason = { item: $input.value };
-                arr.push(jason);
+                if (boton) 
+                {
+                    arr[save_id].item = $input.value;
+                    $update.classList.add("d-none");
+                    $save.classList.remove("d-none"); 
+                }
+                else
+                {
+                        jason = { item: $input.value };
+                        arr.push(jason);
+                }
                 revisar_arr(arr); 
             }
+
         }
     });
 
@@ -62,6 +74,7 @@ revisar_arr(arr);
     function revisar_arr(arr) 
     {
         $input.value = ""
+        $input.focus()
         const longitud = arr.length
 
         while ( $items.firstChild  )  $items.removeChild($items.firstChild);
@@ -72,6 +85,7 @@ revisar_arr(arr);
         } 
         else
         {       
+            boton = false
             arr.forEach((item,i) => 
                 {
                     clonar = $template.cloneNode(true)
@@ -93,19 +107,18 @@ revisar_arr(arr);
             $input.value = arr[e.target.parentNode.parentNode.id].item;
             $save.classList.add("d-none");
             $update.classList.remove("d-none");
+            boton = true   
+            $input.focus() 
         }
         else if(e.target.classList.contains("delete"))
         {
             arr.splice(e.target.parentNode.parentNode.id, 1);
-            e.target.parentNode.parentNode.classList.add("dissapear")    
-
-            console.log(e.target);
-
+            e.target.parentNode.parentNode.classList.add("dissapear");
             setTimeout(() => 
             {
                 revisar_arr(arr); 
             }, 500);        
         }
-    },true);
+    });
 
 })();
