@@ -4,19 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMUNIDAD</title>
+    <title>CRUD</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
+
+    <div class="container">
+
+        <div class="content">
+            <section class="body">
+                <h1>LISTA DE PRODUCTOS</h1>
+            </section>
+
+            <div class="input_line">
+                <input type="text" id="input" placeholder="Ingresa un item">
+                <button id="save">Save</button>
+                <button id="update" class="d-none">Update</button>
+            </div>
+            
+            <div class="items" id="items">
+            </div>
+
+        </div>
+    </div>
+
+
+    <template id="template">
+        <div class="d-flex">
+            <section class="body-item">
+                <p class="texto"></p>
+            </section>
+            <section>
+                <button class="update">U</button>
+                <button class="delete">X</button>
+            </section>
+        </div>
+    </template>
+
+
+
     
-
-
-    <button id="btn"> Cerrar </button>
-
-    <input type="email" id="email">
-
-    <input type="password" id="pass">
-
-
-   <script src="hola.js"></script>
+    <script src="hola.js"></script>
 </body>
 </html>
