@@ -1,6 +1,5 @@
 (function() 
 {
-    
 const $input = document.getElementById("input") 
 const $save = document.getElementById("save") 
 const $update = document.getElementById("update") 
@@ -13,109 +12,81 @@ p.classList.add("text-center");
 
 const fragmento = document.createDocumentFragment()
  
- 
-
 let arr = [], jason = {};
 let clonar
 let save_id = 0
 
-
 revisar_arr(arr); 
 
-
-window.addEventListener("keyup", (e)=> 
-{
-    if (e.key === "Enter") 
+    window.addEventListener("keyup", (e)=> 
     {
-        if ($input.value.trim() === "")
+        if (e.key === "Enter") 
         {
-            alert("ingresa un dato")    
+            if ($input.value.trim() === "")  alert("ingresa un dato")    
+            else
+            {
+                jason = { item: $input.value };
+                arr.push(jason);
+                revisar_arr(arr); 
+            }
         }
+    });
+
+
+    $save.addEventListener("click", ()=> 
+    {
+        if ($input.value.trim() === "")  alert("ingresa un dato")    
         else
         {
             jason = { item: $input.value };
             arr.push(jason);
             revisar_arr(arr); 
         }
-    }
- 
-})
-
-
-
-
-$save.addEventListener("click", ()=> 
-{
-  
-    if ($input.value.trim() === "")
-    {
-        alert("ingresa un dato")    
-    }
-    else
-    {
-        jason = { item: $input.value };
-        arr.push(jason);
-        revisar_arr(arr); 
-    }
-
-});
+    });
  
 
-$update.addEventListener("click", ()=> 
-{
-    
-    if ($input.value.trim() === "") 
+    $update.addEventListener("click", ()=> 
     {
-        alert("ingresa un dato")
-    } 
-    else 
-    {
-        arr[save_id].item = $input.value;
-        $update.classList.add("d-none");
-        $save.classList.remove("d-none");
-        revisar_arr(arr);    
-    }
+        if ($input.value.trim() === "")  alert("ingresa un dato")
+        else 
+        {
+            arr[save_id].item = $input.value;
+            $update.classList.add("d-none");
+            $save.classList.remove("d-none");
+            revisar_arr(arr);    
+        }
+    });
+
  
-});
-
-
-
-
-
-
-// FUNCIONES
-
-function revisar_arr(arr) 
-{
-    $input.value = ""
-    const longitud = arr.length
-
-    while ( $items.firstChild  )  $items.removeChild($items.firstChild);
-
-    if (longitud == 0) 
+    // FUNCIONES
+    function revisar_arr(arr) 
     {
-        $items.appendChild(p);
+        $input.value = ""
+        const longitud = arr.length
+
+        while ( $items.firstChild  )  $items.removeChild($items.firstChild);
+
+        if (longitud == 0) 
+        {
+            $items.appendChild(p);
+        } 
+        else
+        {       
+            arr.forEach((item,i) => 
+                {
+                    clonar = $template.cloneNode(true)
+                    clonar.querySelector(".texto").textContent = item.item
+                    clonar.querySelector(".d-flex").id = i
+                    fragmento.appendChild(clonar)
+                });
+
+                $items.appendChild(fragmento);
+        } 
     } 
-    else
-    {       
-        arr.forEach((item,i) => 
-            {
-                clonar = $template.cloneNode(true)
-                clonar.querySelector(".texto").textContent = item.item
-                clonar.querySelector(".d-flex").id = i
-                fragmento.appendChild(clonar)
-            });
-
-            $items.appendChild(fragmento);
-    } 
-} 
-
-
 
 
     window.addEventListener("click", (e)=> 
     {
-
         if (e.target.classList.contains("update")) 
         { 
             save_id = e.target.parentNode.parentNode.id;
@@ -128,16 +99,13 @@ function revisar_arr(arr)
             arr.splice(e.target.parentNode.parentNode.id, 1);
             e.target.parentNode.parentNode.classList.add("dissapear")    
 
+            console.log(e.target);
+
             setTimeout(() => 
             {
                 revisar_arr(arr); 
-            }, 500);
-
-
-        
+            }, 500);        
         }
+    },true);
 
-    });
-
- 
 })();

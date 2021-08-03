@@ -186,7 +186,7 @@
 
 .delete 
 {
-    background-color: darkred;
+    background-color: #ad171a;
     font-size: 16px;
     cursor: pointer;
     color: white;
@@ -201,7 +201,7 @@
 
 .update 
 {
-    background-color: yellowgreen;
+    background-color: #9e5c00;
     font-size: 16px;
     cursor: pointer;
     color: white;
