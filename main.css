@@ -258,8 +258,47 @@
 
 
 
+.clase1 
+{
+    height: 100vh;
+    background-color: burlywood;
+}
+
+
+.t-center
+{
+    text-align: center;
+    padding : 20px;
+}
+
+#good , #bad 
+{
+    font-size: 20px;
+    padding: 10px;
+    color: #Fff;
+}
+
+#good
+{
+    background-color: #0753ff;
+}
+
+#bad
+{
+    background-color: #d83232;
+}
+
+#photo 
+{
+    height: 360px;
+    width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 0 5px black;
+}
 
 
 
 
 
+
+ 
