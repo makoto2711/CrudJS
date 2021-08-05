@@ -112,13 +112,13 @@
     $bad.addEventListener("click", malo);
 
     function malo()  {
-        $photo.src =  "https://i.redd.it/kvona40rlhg61.png"   
+        $photo.src =  "malo.png"   
     }
 
     $good.addEventListener("click", bueno);
 
     function bueno()  {
-        $photo.src = "https://static.wikia.nocookie.net/happytreefriends/images/a/ae/Random_Acts_Of_Silence.png/revision/latest?cb=20131016234250&path-prefix=es"      
+        $photo.src = "bueno.png"      
     }
 
 
